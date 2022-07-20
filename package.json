@@ -1,0 +1,37 @@
+{
+  "name": "projeto20-repoprovas",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "nodemon src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anaraquelmatos/RepoProvas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anaraquelmatos/RepoProvas/issues"
+  },
+  "homepage": "https://github.com/anaraquelmatos/RepoProvas#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.1.0",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.6",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "prisma": "^4.1.0"
+  }
+}

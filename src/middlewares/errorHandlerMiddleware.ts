@@ -11,6 +11,9 @@ export default function errorHandler(error, req: Request, res: Response, next: N
     if (error.type === "conflict") {
         return res.status(409).send({ message: error.message });
     }
+    if (error.type === "schema") {
+        return res.status(422).send({ message: error.message });
+    }
     if (error.response) {
         return res.sendStatus(error.response.status);
     }

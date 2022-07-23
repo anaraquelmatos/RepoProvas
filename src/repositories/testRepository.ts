@@ -1,4 +1,5 @@
 import { Test } from "@prisma/client";
+import { transformDocument } from "@prisma/client/runtime/index.js";
 import prisma from "../../config/database.js";
 
 export type infoTest = Omit<Test, "id">;
@@ -23,12 +24,56 @@ export async function insert(data: infoTest) {
     await prisma.test.create({ data });
 }
 
+export async function findTestByDiscipline() {
+    return await prisma.term.findMany({
+        select: {
+            id: true,
+            number: true,
+            disciplines: {
+                select: {
+                    id: true,
+                    name: true,
+                    teachersDisciplines: {
+                        select: {
+                            id: true,
+                            teacherId: true,
+                            disciplineId: true,
+                            teacher: {
+                                select: {
+                                    id: true,
+                                    name: true
+                                }
+                            },
+                            tests: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    pdfUrl: true,
+                                    categoryId: true,
+                                    teacherDisciplineId: true,
+                                    category: {
+                                        select: {
+                                            id: true,
+                                            name: true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
 const testRepos = {
     findByCategoryName,
     findByDisciplineName,
     findByTeacherName,
     findTeacherDisciplineById,
-    insert
+    insert,
+    findTestByDiscipline
 }
 
 export default testRepos;

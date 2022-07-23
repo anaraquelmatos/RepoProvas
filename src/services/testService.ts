@@ -44,3 +44,17 @@ async function searchTeacherDisciplineId(disciplineId: number, teacherId: number
 async function insertIntoDatabase(data: infoTest) {
     testRepos.insert(data);
 }
+
+export async function getTests() {
+
+    const testByDiscipline = await testRepos.findTestByDiscipline();
+
+    if (!testByDiscipline) throw { type: "not found", message: "No registry have been made yet!" };
+
+    return testByDiscipline;
+}
+
+
+
+
+

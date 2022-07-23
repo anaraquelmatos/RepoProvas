@@ -12,3 +12,10 @@ export async function registerTest(req: Request, res: Response) {
 
     res.sendStatus(201);
 }
+
+export async function listAllTests(req: Request, res: Response) {
+
+    const viewByDiscipline = await testService.getTests();
+
+    res.send(viewByDiscipline).status(200);
+}

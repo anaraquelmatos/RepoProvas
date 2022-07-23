@@ -13,9 +13,16 @@ export async function registerTest(req: Request, res: Response) {
     res.sendStatus(201);
 }
 
-export async function listAllTests(req: Request, res: Response) {
+export async function listTestsByDiscipline(req: Request, res: Response) {
 
-    const viewByDiscipline = await testService.getTests();
+    const viewByDiscipline = await testService.getTestsByDiscipline();
 
     res.send(viewByDiscipline).status(200);
+}
+
+export async function listTestsByTeacher(req: Request, res: Response) {
+
+    const viewByTeacher = await testService.getTestsByTeacher();
+
+    res.send(viewByTeacher).status(200);
 }

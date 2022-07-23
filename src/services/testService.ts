@@ -45,13 +45,22 @@ async function insertIntoDatabase(data: infoTest) {
     testRepos.insert(data);
 }
 
-export async function getTests() {
+export async function getTestsByDiscipline() {
 
-    const testByDiscipline = await testRepos.findTestByDiscipline();
+    const testByDiscipline = await testRepos.findTestsByDiscipline();
 
-    if (!testByDiscipline) throw { type: "not found", message: "No registry have been made yet!" };
+    if (testByDiscipline.length === 0) throw { type: "not found", message: "No registry have been made yet!" };
 
     return testByDiscipline;
+}
+
+export async function getTestsByTeacher() {
+
+    const testByTeacher = await testRepos.findTestsByTeacher();
+
+    if (testByTeacher.length === 0) throw { type: "not found", message: "No registry have been made yet!" };
+
+    return testByTeacher;
 }
 
 

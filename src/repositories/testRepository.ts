@@ -24,7 +24,7 @@ export async function insert(data: infoTest) {
     await prisma.test.create({ data });
 }
 
-export async function findTestByDiscipline() {
+export async function findTestsByDiscipline() {
     return await prisma.term.findMany({
         select: {
             id: true,
@@ -67,13 +67,59 @@ export async function findTestByDiscipline() {
     });
 }
 
+export async function findTestsByTeacher() {
+    return await prisma.teacher.findMany({
+        select: {
+            id: true,
+            name: true,
+            teachersDisciplines: {
+                select: {
+                    id: true,
+                    teacherId: true,
+                    disciplineId: true,
+                    discipline: {
+                        select: {
+                            id: true,
+                            name: true,
+                            termId: true,
+                            term: {
+                                select: {
+                                    id: true,
+                                    number: true,
+                                }
+                            },
+                        }
+                    },
+                    tests: {
+                        select: {
+                            id: true,
+                            name: true,
+                            pdfUrl: true,
+                            categoryId: true,
+                            teacherDisciplineId: true,
+                            category: {
+                                select: {
+                                    id: true,
+                                    name: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    })
+}
+
 const testRepos = {
     findByCategoryName,
     findByDisciplineName,
     findByTeacherName,
     findTeacherDisciplineById,
     insert,
-    findTestByDiscipline
+    findTestsByDiscipline,
+    findTestsByTeacher
 }
 
 export default testRepos;

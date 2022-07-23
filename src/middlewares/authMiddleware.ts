@@ -13,12 +13,7 @@ export async function verifyUserDataSignUp(req: Request, res: Response, next: Ne
         return res.status(422).send(error.details.map(detail => detail.message));
     }
 
-    if (password !== confirmPassword) {
-        throw {
-            type: "schema",
-            message: "Passwords are different!"
-        }
-    }
+    if (password !== confirmPassword) throw { type: "schema", message: "Passwords are different!" };
 
     next();
 }

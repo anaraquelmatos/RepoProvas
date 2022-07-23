@@ -18,12 +18,7 @@ async function searchUserEmail(email: string) {
 
     const verifyEmail = await authRepos.findByEmail(email);
 
-    if (verifyEmail) {
-        throw {
-            type: "conflict",
-            message: "An account already exists with this email!"
-        }
-    }
+    if (verifyEmail) throw { type: "conflict", message: "An account already exists with this email!" };
 }
 
 async function encryptData(data: string) {
@@ -40,12 +35,7 @@ export async function postSignIn(data: infoAuth) {
 
     const confirmEmail = await authRepos.findByEmail(data.email);
 
-    if (!confirmEmail) {
-        throw {
-            type: "not found",
-            message: "Unregistered email!"
-        }
-    }
+    if (!confirmEmail) throw { type: "not found", message: "Unregistered email!" };
 
     await validatePassword(data.password, confirmEmail.password);
 
@@ -57,10 +47,7 @@ export async function postSignIn(data: infoAuth) {
 async function validatePassword(password: string, passwordEncrypted: string) {
 
     if (!bcrypt.compareSync(password, passwordEncrypted)) {
-        throw {
-            type: "unauthorized",
-            message: "Incorrect password!"
-        }
+        throw { type: "unauthorized", message: "Incorrect password!" };
     }
 }
 

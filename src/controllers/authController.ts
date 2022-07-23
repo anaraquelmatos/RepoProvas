@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { infoAuth } from "../repositories/authRepository.js";
 import * as authService from "../services/authService.js";
 
-export async function SignUp(req: Request, res: Response) {
+export async function signUp(req: Request, res: Response) {
 
     const data: infoAuth = req.body;
 
@@ -11,7 +11,7 @@ export async function SignUp(req: Request, res: Response) {
     res.sendStatus(201);
 }
 
-export async function SignIn(req: Request, res: Response) {
+export async function signIn(req: Request, res: Response) {
 
     const data: infoAuth = req.body;
 

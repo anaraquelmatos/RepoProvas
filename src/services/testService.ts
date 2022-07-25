@@ -49,16 +49,12 @@ export async function getTestsByDiscipline() {
 
     const testByDiscipline = await testRepos.findTestsByDiscipline();
 
-    if (testByDiscipline.length === 0) throw { type: "not found", message: "No registry have been made yet!" };
-
     return testByDiscipline;
 }
 
 export async function getTestsByTeacher() {
 
     const testByTeacher = await testRepos.findTestsByTeacher();
-
-    if (testByTeacher.length === 0) throw { type: "not found", message: "No registry have been made yet!" };
 
     return testByTeacher;
 }

@@ -11,8 +11,4 @@ App.use(json());
 App.use(router);
 App.use(errorHandler);
 
-const port = +process.env.PORT || 7000;
-
-App.listen(port, () => {
-    console.log(`Server up and running on port ${port}`);
-})
+export default App;
